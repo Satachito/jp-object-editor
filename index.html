@@ -1,0 +1,99 @@
+<!doctype html>
+<title>jp-object-editor demo</title>
+<style>
+.jp-object-editor-null, .jp-object-editor-undefined {
+;	color			: red
+}
+.jp-object-editor-Boolean {
+;	color			: green
+}
+.jp-object-editor-String::before, .jp-object-editor-String::after {
+;	content			: '"'
+}
+
+.jp-object-editor-Object > a, .jp-object-editor-Array > a {
+;	color			: red
+}
+.jp-object-editor-Object > div, .jp-object-editor-Array > div {
+;	padding-left	: 1em
+}
+jp-object-editor > a::before {
+;	content			: ': '
+}
+jp-object-editor > a::after {
+;	content			: ' > '
+}
+jp-object-editor.open > a::after {
+;	content			: ' v '
+}
+
+</style>
+<jp-object-editor></jp-object-editor>
+<br>
+<jp-object-editor json=null></jp-object-editor>
+<br>
+<jp-object-editor json=true></jp-object-editor>
+<br>
+<jp-object-editor json=false></jp-object-editor>
+<br>
+<jp-object-editor json=0></jp-object-editor>
+<br>
+<jp-object-editor json=123></jp-object-editor>
+<br>
+<jp-object-editor json='""'></jp-object-editor>
+<br>
+<jp-object-editor json='"ABC"'></jp-object-editor>
+<br>
+STATIC
+<jp-object-editor
+	json='{
+		"jockeys": {
+			"05339": {
+				"name": "Christophe Patrice Lemaire"
+			,	"birthday": 19790520
+			}
+		,	"05212": {
+				"name": "Mirco Demuro"
+			,	"birthday": 19790111
+			}
+		}
+	,	"races": [
+			{	"date":	20181125
+			,	"name": "Japan Cup"
+			,	"grade": "G1"
+			,	"horses": [ "Almond Eye" ]
+			}
+		,	{	"date":	20181125
+			,	"name": "Keihan Hai"
+			,	"grade": "G3"
+			,	"horses": [ "Danon Smash" ]
+			}
+		,	{	"date":	20190120
+			,	"name": "Tokai S."
+			,	"grade": "G2"
+			,	"horses": [ "Inti" ]
+			}
+		,	{	"date":	20190120
+			,	"name": "American Jockey Club Cup"
+			,	"grade": "G2"
+			,	"horses": [ "Sciacchetra" ]
+			}
+		]
+	}'
+></jp-object-editor>
+<br>
+DYNAMIC
+<script type=module src='./jp-object-editor.js'>
+</script>
+<script type=module>
+	import { JPObjectEditor } from './jp-object-editor.js'
+	const
+	Last = _ => _[ _.length - 1 ]
+	document.body.appendChild(
+		new JPObjectEditor(
+			JSON.parse( Last( document.getElementsByTagName( 'jp-object-editor' ) ).getAttribute( 'json' ) )
+		)
+	)
+</script>
+
+

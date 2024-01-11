@@ -1,0 +1,24 @@
+{
+  "name": "@satachito/jp-object-editor",
+  "version": "1.0.0",
+  "description": "A Web Component that edits a javascript object.",
+  "main": "jp-object-editor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Satachito/jp-object-editor.git"
+  },
+  "keywords": [
+    "JSON",
+  ],
+  "author": "Satoru Ogura <satoru.ogura@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Satachito/jp-object-editor/issues"
+  },
+  "homepage": "https://github.com/Satachito/jp-object-editor#readme"
+}
