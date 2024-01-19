@@ -11,20 +11,24 @@
 ;	content			: '"'
 }
 
-.jp-object-editor-Object > a, .jp-object-editor-Array > a {
+jp-object-editor > a {
 ;	color			: red
-}
-.jp-object-editor-Object > div, .jp-object-editor-Array > div {
-;	padding-left	: 1em
 }
 jp-object-editor > a::before {
 ;	content			: ': '
 }
 jp-object-editor > a::after {
-;	content			: ' > '
+;	content			: ' ▹ '
 }
-jp-object-editor.open > a::after {
-;	content			: ' v '
+jp-object-editor[ open ] > a::after {
+;	content			: ' ▿ '
+}
+
+jp-object-editor > div {
+;	padding-left	: 1em
+}
+jp-object-editor > div > span::before {
+;	content			: '❎ '
 }
 
 </style>
@@ -44,7 +48,8 @@ jp-object-editor.open > a::after {
 <br>
 <jp-object-editor json='"ABC"'></jp-object-editor>
 <br>
-STATIC
+<br>
+STATIC<br>
 <jp-object-editor
 	json='{
 		"jockeys": {
@@ -82,18 +87,18 @@ STATIC
 	}'
 ></jp-object-editor>
 <br>
-DYNAMIC
-<script type=module src='./jp-object-editor.js'>
-</script>
+<br>
+DYNAMIC<button id=EXPORT_BUTTON>EXPORT</button><br>
 <script type=module>
-	import { JPObjectEditor } from './jp-object-editor.js'
+	import JPObjectEditor from './jp-object-editor.js'
 	const
 	Last = _ => _[ _.length - 1 ]
-	document.body.appendChild(
-		new JPObjectEditor(
-			JSON.parse( Last( document.getElementsByTagName( 'jp-object-editor' ) ).getAttribute( 'json' ) )
-		)
+	const
+	_ = new JPObjectEditor(
+		JSON.parse( Last( document.getElementsByTagName( 'jp-object-editor' ) ).getAttribute( 'json' ) )
 	)
+	_.setAttribute( 'open', '' )
+	document.body.appendChild( _ )
+	EXPORT_BUTTON.onclick = () => console.log( JSON.stringify( _.$ ) ) 
 </script>
-
 
