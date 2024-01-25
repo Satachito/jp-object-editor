@@ -1,55 +1,99 @@
 <!doctype html>
-<title>jp-object-editor demo</title>
+<title>jp-object demo</title>
 <style>
-.jp-object-editor-null, .jp-object-editor-undefined {
+body {
+;	margin			: 32px
+}
+.jp-object-undefined::before {
+;	content			: 'undefined'
 ;	color			: red
 }
-.jp-object-editor-Boolean {
-;	color			: green
-}
-.jp-object-editor-String::before, .jp-object-editor-String::after {
+.jp-object-String::before, .jp-object-String::after {
 ;	content			: '"'
 }
 
-jp-object-editor > a {
+.jp-object > a {
 ;	color			: red
 }
-jp-object-editor > a::before {
-;	content			: ': '
+.jp-object > a::before {
+;	content			: '('
 }
-jp-object-editor > a::after {
-;	content			: ' ▹ '
+.jp-object > a::after {
+;	content			: ') ▹ '
 }
-jp-object-editor[ open ] > a::after {
-;	content			: ' ▿ '
+.jp-object[ open ] > a::after {
+;	content			: ') ▿ '
 }
 
-jp-object-editor > div {
+.jp-object > div {
 ;	padding-left	: 1em
 }
+.jp-object > div > span::after {
+;	content			: ':'
+}
+
 jp-object-editor > div > span::before {
 ;	content			: '❎ '
 }
 
 </style>
-<jp-object-editor></jp-object-editor>
+<h2>STATICs</h2><br>
+<h4>VIEWERs</h4><br>
+<jp-object				></jp-object><br>
+<jp-object json=null	></jp-object><br>
+<jp-object json=true	></jp-object><br>
+<jp-object json=false	></jp-object><br>
+<jp-object json=0		></jp-object><br>
+<jp-object json=123		></jp-object><br>
+<jp-object json='""'	></jp-object><br>
+<jp-object json='"ABC"'	></jp-object><br>
 <br>
-<jp-object-editor json=null></jp-object-editor>
+<jp-object
+	json='{
+		"jockeys": {
+			"05339": {
+				"name": "Christophe Patrice Lemaire"
+			,	"birthday": 19790520
+			}
+		,	"05212": {
+				"name": "Mirco Demuro"
+			,	"birthday": 19790111
+			}
+		}
+	,	"races": [
+			{	"date":	20181125
+			,	"name": "Japan Cup"
+			,	"grade": "G1"
+			,	"horses": [ "Almond Eye" ]
+			}
+		,	{	"date":	20181125
+			,	"name": "Keihan Hai"
+			,	"grade": "G3"
+			,	"horses": [ "Danon Smash" ]
+			}
+		,	{	"date":	20190120
+			,	"name": "Tokai S."
+			,	"grade": "G2"
+			,	"horses": [ "Inti" ]
+			}
+		,	{	"date":	20190120
+			,	"name": "American Jockey Club Cup"
+			,	"grade": "G2"
+			,	"horses": [ "Sciacchetra" ]
+			}
+		]
+	}'
+></jp-object>
+<h4>EDITORs</h4><br>
+<jp-object-editor				></jp-object-editor><br>
+<jp-object-editor json=null		></jp-object-editor><br>
+<jp-object-editor json=true		></jp-object-editor><br>
+<jp-object-editor json=false	></jp-object-editor><br>
+<jp-object-editor json=0		></jp-object-editor><br>
+<jp-object-editor json=123		></jp-object-editor><br>
+<jp-object-editor json='""'		></jp-object-editor><br>
+<jp-object-editor json='"ABC"'	></jp-object-editor><br>
 <br>
-<jp-object-editor json=true></jp-object-editor>
-<br>
-<jp-object-editor json=false></jp-object-editor>
-<br>
-<jp-object-editor json=0></jp-object-editor>
-<br>
-<jp-object-editor json=123></jp-object-editor>
-<br>
-<jp-object-editor json='""'></jp-object-editor>
-<br>
-<jp-object-editor json='"ABC"'></jp-object-editor>
-<br>
-<br>
-STATIC<br>
 <jp-object-editor
 	json='{
 		"jockeys": {
@@ -88,17 +132,36 @@ STATIC<br>
 ></jp-object-editor>
 <br>
 <br>
-DYNAMIC<button id=EXPORT_BUTTON>EXPORT</button><br>
+<h2>DYNAMIC</h2><br>
 <script type=module>
-	import JPObjectEditor from './jp-object-editor.js'
+	import { JPObject, JPObjectEditor } from './jp-object.js'
 	const
 	Last = _ => _[ _.length - 1 ]
-	const
-	_ = new JPObjectEditor(
-		JSON.parse( Last( document.getElementsByTagName( 'jp-object-editor' ) ).getAttribute( 'json' ) )
-	)
-	_.setAttribute( 'open', '' )
-	document.body.appendChild( _ )
-	EXPORT_BUTTON.onclick = () => console.log( JSON.stringify( _.$ ) ) 
+
+	{	const
+		_ = new JPObject(
+			JSON.parse( Last( document.getElementsByTagName( 'jp-object' ) ).getAttribute( 'json' ) )
+		)
+		_.setAttribute( 'open', '' )
+		document.body.appendChild( _ )
+		document.body.appendChild( document.createElement( 'br' ) )
+	}
+
+	document.body.appendChild( document.createElement( 'br' ) )
+
+	{	const button = document.body.appendChild( document.createElement( 'button' ) )
+		button.textContent = 'EXPORT'
+		button.onclick = () => console.log( JSON.stringify( _.$ ) ) 
+		document.body.appendChild( document.createElement( 'br' ) )
+
+		const
+		_ = new JPObjectEditor(
+			JSON.parse( Last( document.getElementsByTagName( 'jp-object-editor' ) ).getAttribute( 'json' ) )
+		)
+		_.setAttribute( 'open', '' )
+		document.body.appendChild( _ )
+		document.body.appendChild( document.createElement( 'br' ) )
+	}
+
 </script>
 
