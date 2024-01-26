@@ -49,7 +49,7 @@ JPObject extends HTMLElement {
 					const span = AE( div, 'span' )
 					span.textContent = k
 					this.ConfigKeySpan( span, k )
-					div.appendChild( this.NewJPObject( v, k, span ) )
+					div.appendChild( this.NewJPObject( v, k ) )
 				}
 			)
 			AT( this, closeP )
