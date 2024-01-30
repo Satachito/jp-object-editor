@@ -1,11 +1,11 @@
 {
-  "name": "jp-object-editor",
+  "name": "jp-object",
   "version": "1.0.0",
-  "description": "A Web Component that edits a javascript object.",
-  "main": "_.js",
+  "description": "A WebComponent that can display and edit JavaScript objects.",
+  "main": "jp-object.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Satoru Ogura",
   "license": "ISC"
 }

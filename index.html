@@ -11,157 +11,142 @@ body {
 .jp-object-String::before, .jp-object-String::after {
 ;	content			: '"'
 }
-
-.jp-object > a {
-;	color			: red
+.jp-object-key-name {
+;	width			: 64px
 }
-.jp-object > a::before {
+.jp-object-key-name::placeholder {
+;	color			: green
+}
+
+jp-object > a {
+;	color			: blue
+}
+jp-object > a::before {
 ;	content			: '('
 }
-.jp-object > a::after {
+jp-object > a::after {
 ;	content			: ') ▹ '
 }
-.jp-object[ open ] > a::after {
+jp-object[ open ] > a::after {
 ;	content			: ') ▿ '
 }
 
-.jp-object > div {
+jp-object > div {
 ;	padding-left	: 1em
 }
-.jp-object > div > span::after {
+jp-object .jp-object-key::after {
 ;	content			: ':'
 }
-
-jp-object-editor > div > span::before {
-;	content			: '❎ '
+jp-object[ removable ] .jp-object-key::before {
+;	color			: red
+;	content			: '× '
 }
-
 </style>
-<h2>STATICs</h2><br>
-<h4>VIEWERs</h4><br>
-<jp-object				></jp-object><br>
-<jp-object json=null	></jp-object><br>
-<jp-object json=true	></jp-object><br>
-<jp-object json=false	></jp-object><br>
-<jp-object json=0		></jp-object><br>
-<jp-object json=123		></jp-object><br>
-<jp-object json='""'	></jp-object><br>
-<jp-object json='"ABC"'	></jp-object><br>
-<br>
+
+<h2>STATICs</h2>
+<jp-object				editable appendable removable></jp-object><br>
+<jp-object json=null	editable appendable removable></jp-object><br>
+<jp-object json=true	editable appendable removable></jp-object><br>
+<jp-object json=false	editable appendable removable></jp-object><br>
+<jp-object json=0		editable appendable removable></jp-object><br>
+<jp-object json=123		editable appendable removable></jp-object><br>
+<jp-object json='""'	editable appendable removable></jp-object><br>
+<jp-object json='"ABC"'	editable appendable removable></jp-object><br>
 <jp-object
+	editable appendable removable
 	json='{
 		"jockeys": {
 			"05339": {
-				"name": "Christophe Patrice Lemaire"
-			,	"birthday": 19790520
+				"name"		: "Christophe Patrice Lemaire"
+			,	"birthday"	: 19790520
 			}
 		,	"05212": {
-				"name": "Mirco Demuro"
-			,	"birthday": 19790111
+				"name"		: "Mirco Demuro"
+			,	"birthday"	: 19790111
 			}
 		}
 	,	"races": [
-			{	"date":	20181125
-			,	"name": "Japan Cup"
-			,	"grade": "G1"
-			,	"horses": [ "Almond Eye" ]
+			{	"date"		:	20181125
+			,	"name"		: "Japan Cup"
+			,	"grade"		: "G1"
+			,	"horses"	: [ "Almond Eye" ]
 			}
-		,	{	"date":	20181125
-			,	"name": "Keihan Hai"
-			,	"grade": "G3"
-			,	"horses": [ "Danon Smash" ]
+		,	{	"date"		:	20181125
+			,	"name"		: "Keihan Hai"
+			,	"grade"		: "G3"
+			,	"horses"	: [ "Danon Smash" ]
 			}
-		,	{	"date":	20190120
-			,	"name": "Tokai S."
-			,	"grade": "G2"
-			,	"horses": [ "Inti" ]
+		,	{	"date"		:	20190120
+			,	"name"		: "Tokai S."
+			,	"grade"		: "G2"
+			,	"horses"	: [ "Inti" ]
 			}
-		,	{	"date":	20190120
-			,	"name": "American Jockey Club Cup"
-			,	"grade": "G2"
-			,	"horses": [ "Sciacchetra" ]
+		,	{	"date"		:	20190120
+			,	"name"		: "American Jockey Club Cup"
+			,	"grade"		: "G2"
+			,	"horses"	: [ "Sciacchetra" ]
 			}
 		]
 	}'
 ></jp-object>
-<h4>EDITORs</h4><br>
-<jp-object-editor				></jp-object-editor><br>
-<jp-object-editor json=null		></jp-object-editor><br>
-<jp-object-editor json=true		></jp-object-editor><br>
-<jp-object-editor json=false	></jp-object-editor><br>
-<jp-object-editor json=0		></jp-object-editor><br>
-<jp-object-editor json=123		></jp-object-editor><br>
-<jp-object-editor json='""'		></jp-object-editor><br>
-<jp-object-editor json='"ABC"'	></jp-object-editor><br>
-<br>
-<jp-object-editor
-	json='{
-		"jockeys": {
-			"05339": {
-				"name": "Christophe Patrice Lemaire"
-			,	"birthday": 19790520
-			}
-		,	"05212": {
-				"name": "Mirco Demuro"
-			,	"birthday": 19790111
-			}
-		}
-	,	"races": [
-			{	"date":	20181125
-			,	"name": "Japan Cup"
-			,	"grade": "G1"
-			,	"horses": [ "Almond Eye" ]
-			}
-		,	{	"date":	20181125
-			,	"name": "Keihan Hai"
-			,	"grade": "G3"
-			,	"horses": [ "Danon Smash" ]
-			}
-		,	{	"date":	20190120
-			,	"name": "Tokai S."
-			,	"grade": "G2"
-			,	"horses": [ "Inti" ]
-			}
-		,	{	"date":	20190120
-			,	"name": "American Jockey Club Cup"
-			,	"grade": "G2"
-			,	"horses": [ "Sciacchetra" ]
-			}
-		]
-	}'
-></jp-object-editor>
-<br>
-<br>
-<h2>DYNAMIC</h2><br>
+
+<h2>DYNAMIC</h2>
 <script type=module>
-	import { JPObject, JPObjectEditor } from './jp-object.js'
-	const
-	Last = _ => _[ _.length - 1 ]
+	import JPObject from './jp-object.js'
 
-	{	const
-		_ = new JPObject(
-			JSON.parse( Last( document.getElementsByTagName( 'jp-object' ) ).getAttribute( 'json' ) )
-		)
-		_.setAttribute( 'open', '' )
-		document.body.appendChild( _ )
-		document.body.appendChild( document.createElement( 'br' ) )
-	}
+	const AC = _ => document.body.appendChild( _ )
+	const CE = _ => document.createElement( _ )
 
-	document.body.appendChild( document.createElement( 'br' ) )
+	const $	= new JPObject( 
+		{	jockeys: {
+				"05339": {
+					name: "Christophe Patrice Lemaire"
+				,	birthday: 19790520
+				}
+			,	"05212": {
+					name: "Mirco Demuro"
+				,	birthday: 19790111
+				}
+			}
+		,	races: [
+				{	date:	20181125
+				,	name: "Japan Cup"
+				,	grade: "G1"
+				,	horses: [ "Almond Eye" ]
+				}
+			,	{	date:	20181125
+				,	name: "Keihan Hai"
+				,	grade: "G3"
+				,	horses: [ "Danon Smash" ]
+				}
+			,	{	date:	20190120
+				,	name: "Tokai S."
+				,	grade: "G2"
+				,	horses: [ "Inti" ]
+				}
+			,	{	date:	20190120
+				,	name: "American Jockey Club Cup"
+				,	grade: "G2"
+				,	horses: [ "Sciacchetra" ]
+				}
+			]
+		}
+	)
+	$.setAttribute( 'open'		, '' )
+	$.setAttribute( 'editable'	, '' )
+	$.setAttribute( 'appendable', '' )
+	$.setAttribute( 'removable'	, '' )
+	AC( $ )
 
-	{	const button = document.body.appendChild( document.createElement( 'button' ) )
-		button.textContent = 'EXPORT'
-		button.onclick = () => console.log( JSON.stringify( _.$ ) ) 
-		document.body.appendChild( document.createElement( 'br' ) )
+	AC( CE( 'br' ) )
+	const button = AC( CE( 'button' ) )
+	button.textContent = 'EXPORT'
+	button.onclick = () => console.log( JSON.stringify( $.$, null, '\t' ) ) 
 
-		const
-		_ = new JPObjectEditor(
-			JSON.parse( Last( document.getElementsByTagName( 'jp-object-editor' ) ).getAttribute( 'json' ) )
-		)
-		_.setAttribute( 'open', '' )
-		document.body.appendChild( _ )
-		document.body.appendChild( document.createElement( 'br' ) )
-	}
-
+	const elements = Array.from( document.getElementsByTagName( 'jp-object' ) )
+	const filtered = elements.filter( _ => _.ParentAndKey === void 0 )
+	filtered.forEach(
+		_ => _.Broadcaster = _ => console.log( JSON.stringify( _.$, null, '\t' ) ) 
+	)
 </script>
 
