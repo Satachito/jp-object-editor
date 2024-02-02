@@ -34,26 +34,36 @@ jp-object[ open ] > a::after {
 jp-object > div {
 ;	padding-left	: 1em
 }
-jp-object .jp-object-key::after {
-;	content			: ':'
-}
-jp-object[ removable ] .jp-object-key::before {
+jp-object > div > .jp-object-remover::before {
 ;	color			: red
-;	content			: '× '
+;	content			: '×'
+}
+jp-object > div > .jp-object-remover::after {
+;	content			: ' '
+}
+jp-object > div > .jp-object-key::after {
+;	content			: ':'
 }
 </style>
 
+<br>
+
+<input type=checkbox id=REMOVABLE_CB	><label for=REMOVABLE_CB	>Removable	</label>
+<input type=checkbox id=APPENDABLE_CB	><label for=APPENDABLE_CB	>Appendable	</label>
+<input type=checkbox id=REWRITABLE_CB	><label for=REWRITABLE_CB	>Rewritable	</label>
+<br>
+
 <h2>STATICs</h2>
-<jp-object				editable appendable removable></jp-object><br>
-<jp-object json=null	editable appendable removable></jp-object><br>
-<jp-object json=true	editable appendable removable></jp-object><br>
-<jp-object json=false	editable appendable removable></jp-object><br>
-<jp-object json=0		editable appendable removable></jp-object><br>
-<jp-object json=123		editable appendable removable></jp-object><br>
-<jp-object json='""'	editable appendable removable></jp-object><br>
-<jp-object json='"ABC"'	editable appendable removable></jp-object><br>
-<jp-object
-	editable appendable removable
+<jp-object id=JO1					></jp-object><br>
+<jp-object id=JO2	json=null		></jp-object><br>
+<jp-object id=JO3	json=true		></jp-object><br>
+<jp-object id=JO4	json=false		></jp-object><br>
+<jp-object id=JO5	json=0			></jp-object><br>
+<jp-object id=JO6	json=123		></jp-object><br>
+<jp-object id=JO7	json='""'		></jp-object><br>
+<jp-object id=JO8	json='"ABC"'	></jp-object><br>
+<jp-object id=JO9
+	open
 	json='{
 		"jockeys": {
 			"05339": {
@@ -66,87 +76,144 @@ jp-object[ removable ] .jp-object-key::before {
 			}
 		}
 	,	"races": [
-			{	"date"		:	20181125
+			{	"date"		: 20181125
 			,	"name"		: "Japan Cup"
 			,	"grade"		: "G1"
 			,	"horses"	: [ "Almond Eye" ]
 			}
-		,	{	"date"		:	20181125
+		,	{	"date"		: 20181125
 			,	"name"		: "Keihan Hai"
 			,	"grade"		: "G3"
 			,	"horses"	: [ "Danon Smash" ]
 			}
-		,	{	"date"		:	20190120
+		,	{	"date"		: 20190120
 			,	"name"		: "Tokai S."
 			,	"grade"		: "G2"
 			,	"horses"	: [ "Inti" ]
 			}
-		,	{	"date"		:	20190120
+		,	{	"date"		: 20190120
 			,	"name"		: "American Jockey Club Cup"
 			,	"grade"		: "G2"
 			,	"horses"	: [ "Sciacchetra" ]
 			}
 		]
 	}'
-></jp-object>
+></jp-object><br>
 
+<br>
 <h2>DYNAMIC</h2>
+<br>
 <script type=module>
 	import JPObject from './jp-object.js'
 
-	const AC = _ => document.body.appendChild( _ )
-	const CE = _ => document.createElement( _ )
-
-	const $	= new JPObject( 
+	const	$ = new JPObject( 
 		{	jockeys: {
 				"05339": {
-					name: "Christophe Patrice Lemaire"
-				,	birthday: 19790520
+					name		: "Christophe Patrice Lemaire"
+				,	birthday	: 19790520
 				}
 			,	"05212": {
-					name: "Mirco Demuro"
-				,	birthday: 19790111
+					name		: "Mirco Demuro"
+				,	birthday	: 19790111
 				}
 			}
 		,	races: [
-				{	date:	20181125
-				,	name: "Japan Cup"
-				,	grade: "G1"
-				,	horses: [ "Almond Eye" ]
+				{	date		: 20181125
+				,	name		: "Japan Cup"
+				,	grade		: "G1"
+				,	horses		: [ "Almond Eye" ]
 				}
-			,	{	date:	20181125
-				,	name: "Keihan Hai"
-				,	grade: "G3"
-				,	horses: [ "Danon Smash" ]
+			,	{	date		: 20181125
+				,	name		: "Keihan Hai"
+				,	grade		: "G3"
+				,	horses		: [ "Danon Smash" ]
 				}
-			,	{	date:	20190120
-				,	name: "Tokai S."
-				,	grade: "G2"
-				,	horses: [ "Inti" ]
+			,	{	date		: 20190120
+				,	name		: "Tokai S."
+				,	grade		: "G2"
+				,	horses		: [ "Inti" ]
 				}
-			,	{	date:	20190120
-				,	name: "American Jockey Club Cup"
-				,	grade: "G2"
-				,	horses: [ "Sciacchetra" ]
+			,	{	date		: 20190120
+				,	name		: "American Jockey Club Cup"
+				,	grade		: "G2"
+				,	horses		: [ "Sciacchetra" ]
 				}
 			]
 		}
 	)
-	$.setAttribute( 'open'		, '' )
-	$.setAttribute( 'editable'	, '' )
-	$.setAttribute( 'appendable', '' )
-	$.setAttribute( 'removable'	, '' )
+	$.setAttribute( 'open', '' )
+
+	const	AC = _ => document.body.appendChild( _ )
+	const	CE = _ => document.createElement( _ )
+
 	AC( $ )
+	AC( CE( 'br' ) )
 
 	AC( CE( 'br' ) )
-	const button = AC( CE( 'button' ) )
+	const	button = AC( CE( 'button' ) )
 	button.textContent = 'EXPORT'
 	button.onclick = () => console.log( JSON.stringify( $.$, null, '\t' ) ) 
 
-	const elements = Array.from( document.getElementsByTagName( 'jp-object' ) )
-	const filtered = elements.filter( _ => _.ParentAndKey === void 0 )
-	filtered.forEach(
+	Array.from( document.getElementsByTagName( 'jp-object' ) ).filter(
+		_ => _.ParentAndKey === void 0
+	).forEach(
 		_ => _.Broadcaster = _ => console.log( JSON.stringify( _.$, null, '\t' ) ) 
 	)
+
+	const	SetupCheckbox = ( checkbox, _ ) => {
+		checkbox.onchange = () => (
+			checkbox.checked
+			?	(	JO1.setAttribute( _, '' )
+				,	JO2.setAttribute( _, '' )
+				,	JO3.setAttribute( _, '' )
+				,	JO4.setAttribute( _, '' )
+				,	JO5.setAttribute( _, '' )
+				,	JO6.setAttribute( _, '' )
+				,	JO7.setAttribute( _, '' )
+				,	JO8.setAttribute( _, '' )
+				,	JO9.setAttribute( _, '' )
+				,	$.setAttribute( _, '' )
+				)
+			:	(	JO1.removeAttribute( _ )
+				,	JO2.removeAttribute( _ )
+				,	JO3.removeAttribute( _ )
+				,	JO4.removeAttribute( _ )
+				,	JO5.removeAttribute( _ )
+				,	JO6.removeAttribute( _ )
+				,	JO7.removeAttribute( _ )
+				,	JO8.removeAttribute( _ )
+				,	JO9.removeAttribute( _ )
+				,	$.removeAttribute( _ )
+				)
+		,	(	JO1.Construct()
+			,	JO2.Construct()
+			,	JO3.Construct()
+			,	JO4.Construct()
+			,	JO5.Construct()
+			,	JO6.Construct()
+			,	JO7.Construct()
+			,	JO8.Construct()
+			,	JO9.Construct()
+			,	$.Construct()
+			)
+		)
+		checkbox.click()
+	}
+
+	SetupCheckbox( REMOVABLE_CB		, 'removable'	)
+	SetupCheckbox( APPENDABLE_CB	, 'appendable'	)
+	SetupCheckbox( REWRITABLE_CB	, 'rewritable'	)
+
+	/*
+	const
+	OpenAll = _ => (
+console.log( _.tagName ),
+		_.tagName === 'JP-OBJECT' && _.setAttribute( 'open', '' )
+//	,	setTimeout( () => console.log( _ ) )
+//	,	setTimeout( () => Array.from( _.children ).forEach( _ => OpenAll( _ ) ), 1000 )
+	)
+	OpenAll( $ )
+	*/
+//	setTimeout( $.removeAttribute( 'open' ), 1000 )
 </script>
 
