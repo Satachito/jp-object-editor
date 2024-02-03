@@ -29,7 +29,6 @@ console.log( 'ACC', name, oldValue, newValue )
 
 	ObjectOrArray( openP, closeP, remover, appender ) {
 
-		this.innerHTML = ''
 		const	anchor = AE( this, 'a' )
 		anchor.onclick = () => (
 			this.toggleAttribute( 'open' )
@@ -84,6 +83,9 @@ console.log( 'ACC', name, oldValue, newValue )
 	}
 
 	Construct() {
+
+		this.innerHTML = ''
+
 console.log( 'Construct', this.$ )
 		const	Rewritable	= () => this.Top().getAttribute( 'rewritable'	) === ''
 		const	Appendable	= () => this.Top().getAttribute( 'appendable'	) === ''
@@ -106,13 +108,12 @@ console.log( 'Construct', this.$ )
 			Broadcast()
 		}
 
-		this.innerHTML = ''
 		switch ( this.$ ) {
 		case void 0:
-			this.classList.add( `jp-object-undefined` )
+			this.classList.add( 'jp-object-undefined' )
 			break
 		case null:
-			this.classList.add( `jp-object-null` )
+			this.classList.add( 'jp-object-null' )
 			this.textContent = 'null'
 			break
 		default:
