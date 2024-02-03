@@ -36,8 +36,8 @@ console.log( 'ACC', name, oldValue, newValue )
 		,	this.ObjectOrArray( openP, closeP, remover, appender )
 		)
 		anchor.textContent = Object.keys( this.$ ).length
+		AT( this, openP )
 		if ( this.getAttribute( 'open' ) != null ) {
-			AT( this, openP )
 			Object.entries( this.$ ).forEach(
 				( [ k, v ] ) => {
 					const	div = AE( this, 'div' )
@@ -51,10 +51,10 @@ console.log( 'ACC', name, oldValue, newValue )
 					AC( div, new JPObject( v, [ this, k ] ) )
 				}
 			)
-			AT( this, closeP )
 		} else {
-			AT( this, openP + '...' + closeP )
+			AT( this, '...' )
 		}
+		AT( this, closeP )
 		if ( appender ) {
 			const	select	= AE( this, 'select' )
 			const	AddOption	= _ => AE( select, 'option' ).textContent = _
